@@ -8,8 +8,8 @@ import { authUser,
 
 const router = express.Router();
 
-router.post('/', authUser);
-router.post('/auth', registerUser);
+router.post('/', registerUser);
+router.post('/auth', authUser);
 router.post('/logout', logoutUser);
 
 // old method to write route for to same url
