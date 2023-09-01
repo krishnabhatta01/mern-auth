@@ -32,13 +32,13 @@ const registerUser = asyncHandler(async  (req,res) => {
         throw new Error('User Already Exists');
     }
 
-    const createUser = await User.create({name,email,password});
-    if (createUser) {
-        generateToken(res, createUser._id );
+    const user = await User.create({name,email,password});
+    if (user) {
+        generateToken(res, user._id );
         res.status(201).json({
-            _id: createUser._id,
-            name: createUser.name,
-            email:createUser.email,
+            _id: user._id,
+            name: user.name,
+            email:user.email,
         });
     } else {
         res.status(400);
@@ -57,7 +57,14 @@ const logoutUser = asyncHandler(async  (req,res) => {
 
 // @access  private
 const getUserProfile = asyncHandler(async  (req,res) => {
-    res.status(200).json({message: "profile of user"});
+    console.log(req.user);
+    const user = {
+    _id : req.user._id,
+    name:req.user.name,
+    email:req.user.email,
+    };
+
+    res.status(200).json(user);
 }); 
 
 // @access  private
