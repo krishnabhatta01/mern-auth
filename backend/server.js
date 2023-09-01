@@ -4,12 +4,15 @@ import userRoute from './routes/userRoute.js';
 import {errorHandler, notFound} from './middleware/errorMiddleware.js';
 import connectDB from "./config/db.js";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const port = process.env.PORT || 5000;
 
 const app = express();
+app.use(cookieParser());
+
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true}));
 
@@ -24,7 +27,6 @@ connectDB();
 app.use('/api/users',userRoute)
 app.use(notFound);
 app.use(errorHandler);
-
 
 app.listen(port,() => {
     console.log(`Listening on port ${port}`)
