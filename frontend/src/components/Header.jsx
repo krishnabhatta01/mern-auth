@@ -2,26 +2,35 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
+import {LinkContainer } from 'react-router-bootstrap';
 
 
 
 const Header = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="sm" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Mern-Auth</Navbar.Brand>
+
+        <LinkContainer to="/">
+        <Navbar.Brand>Mern-Auth</Navbar.Brand>
+        </LinkContainer>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto d-flex">
         
-            <Nav.Link href="/login">
-                Sign In <FaSignInAlt />
-                 
-            </Nav.Link>
+            <LinkContainer to="/login">
+              <Nav.Link>
+                  Sign In<FaSignInAlt />
+                  
+              </Nav.Link>
+            </LinkContainer>
            
-            <Nav.Link href="/register">
+            <LinkContainer to="/register">
+            <Nav.Link>
                 Sign Up <FaSignOutAlt/>
             </Nav.Link>
+            </LinkContainer>
           
           </Nav>
         </Navbar.Collapse>
