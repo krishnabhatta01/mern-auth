@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import {toast} from 'react-toastify';
+import Loader from '../components/Loader';
 const LoginPage = () => {  
     
     const [email, setEmail] = useState('');
@@ -58,9 +59,15 @@ const LoginPage = () => {
             />
         </Form.Group>
        
-        <Button variant="primary" type="submit">
-            Submit
-        </Button>
+        { isLoading ? ( <Loader/> ) 
+        
+        : (
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+            ) 
+        }
+
         <Row className="mt-3">
             <Col>
                 {`New Customer?`} <Link to="/register">{`Register`}</Link>
