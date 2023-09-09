@@ -8,7 +8,18 @@ const App = () => {
     <>
     
     <Header />
-    <ToastContainer/>
+    <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop
+    closeOnClick={false}
+    rtl={false}
+    pauseOnFocusLoss={false}
+    draggable
+    pauseOnHover={false}
+    theme="light"
+    />
     <Container className="my-2">
       <Outlet/>
     </Container>
