@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
 import {toast} from 'react-toastify';
 import Loader from '../components/Loader';
+import {useUpdateMutation} from '../slices/usersApiSlice';
 
 const ProfilePage = () => {  
 
@@ -21,6 +22,7 @@ const ProfilePage = () => {
 
      const {userInfo} = useSelector((state) => state.auth);
 
+     const [update, {isLoading}] = useUpdateMutation();
 
     useEffect(() => {
         setName(userInfo.name);
@@ -38,7 +40,10 @@ const ProfilePage = () => {
             toast.error('Please enter password!');
         }else {
             try {
+                const res = await update({name, email, password, confirmPassword}).unwrap();
+                dispatch(setCredentials({...res}));
                toast.success('Submitted');
+               navigate('/');
             } catch (err) {
                 toast.error(err.data.message || err.error );
             }
@@ -46,7 +51,7 @@ const ProfilePage = () => {
     }
     
     return (
-    <FormContainer>
+    <FormContainer class="h-screen"> 
         <h2 className="mb-8 text-center text-2xl font-bold  tracking-tight text-gray-900">
           Update Profile
           </h2>
