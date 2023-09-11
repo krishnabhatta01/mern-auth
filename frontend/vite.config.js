@@ -7,10 +7,10 @@ export default defineConfig({
   
   // in order to get jwt token in web browser cookie server section in vital
   server: {
-    port: 5000,
+    port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:5000',
         changeOrigin: true,
       },
     },
