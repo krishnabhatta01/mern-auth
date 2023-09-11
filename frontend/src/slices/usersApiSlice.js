@@ -1,6 +1,6 @@
 import {apiSlice} from './apiSlice';
 
-const USERS_URL = 'http://localhost:3000/api/users';
+const USERS_URL = '/api/users';
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -10,7 +10,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 url: `${USERS_URL}/auth`,
                 method:'POST',
                 body:data,
-            })
+            }),
         }),
 
         logout: builder.mutation({

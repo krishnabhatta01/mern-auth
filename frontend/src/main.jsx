@@ -23,12 +23,13 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       
-      <Route index={true} path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       
       {/* private route */}
       <Route path=''  element={<PrivateRoute/>} >
+        
+        <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
       
       </Route>
